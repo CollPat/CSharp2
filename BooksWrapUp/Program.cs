@@ -51,7 +51,7 @@
 
             Console.ReadLine();
             // List all books
-            Console.WriteLine("This is list of all the books you have read in this year: ");
+            Console.WriteLine("This is list of all the books you have read in year 2024: ");
             Console.ReadLine();
             myBookDatabase.ListBooks();
 
@@ -59,15 +59,22 @@
             Console.ReadLine();
 
             // Find a book by name
-            Book foundBook = myBookDatabase.FindBookByName("Guardian");
-            if (foundBook != null)
+            Console.Write("Cannot find a book in the list? Try to search for it: ");
+            string partialName = Console.ReadLine();
+            List<Book> foundBooks = myBookDatabase.FindBooksByPartialName(partialName);
+            if (foundBooks.Count > 0)
             {
-                Console.WriteLine("You have read the book: " + foundBook);
+                Console.WriteLine("You have read these books:");
+                foreach (var book in foundBooks)
+                {
+                    Console.WriteLine(book);
+                }
             }
             else
             {
-                Console.WriteLine("You have not read the book, yet.");
+                Console.WriteLine("You have not read that book, yet.");
             }
+
 
             Console.ReadLine();
 
@@ -78,7 +85,7 @@
 
             Console.ReadLine();
 
-            //which book took the longest to read and which one was read the slowest
+            //which book took the longest to read and which one was read the fastest
             myBookDatabase.ListFastestAndSlowestReadBooks();
 
             Console.ReadLine();

@@ -30,9 +30,9 @@ namespace BooksWrapUp
             }
         }
 
-        public Book FindBookByName(string name)
+        public List<Book> FindBooksByPartialName(string partialName)
         {
-            return books.Find(book => book.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return books.FindAll(book => book.Name.IndexOf(partialName, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         public List<Book> GetAllBooks()
@@ -99,7 +99,7 @@ namespace BooksWrapUp
         {
             int totalBooksRead = CountBooksRead();
             string currentDate = DateTime.Now.ToString("dd. MM. yyyy");
-            Console.WriteLine($"By this day, {currentDate}, you have read {totalBooksRead} books in this year.");
+            Console.WriteLine($"By the day, {currentDate}, you have read {totalBooksRead} books in year 2024.");
         }
 
         public int CountTotalPagesRead()
