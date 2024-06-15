@@ -86,8 +86,8 @@ namespace BooksWrapUp
             Book fastestReadBook = books.OrderBy(book => book.NumberOfDaysRead).FirstOrDefault();
             Book slowestReadBook = books.OrderByDescending(book => book.NumberOfDaysRead).FirstOrDefault();
 
-            Console.WriteLine($"The book you have read the fastest was: {fastestReadBook}");
-            Console.WriteLine($"The book you have read the slowest was: {slowestReadBook}");
+            Console.WriteLine($"The book you have read the fastest was: {fastestReadBook.NumberOfDaysRead}");
+            Console.WriteLine($"The book you have read the slowest was: {slowestReadBook.NumberOfDaysRead}");
         }
 
         public int CountBooksRead()
@@ -119,8 +119,8 @@ namespace BooksWrapUp
             Book shortestBook = books.OrderBy(book => book.NumberOfPages).FirstOrDefault();
             Book longestBook = books.OrderByDescending(book => book.NumberOfPages).FirstOrDefault();
 
-            Console.WriteLine($"Shortest book that you have read was: {shortestBook}");
-            Console.WriteLine($"Longest book that you have read was: {longestBook}");
+            Console.WriteLine($"Shortest book that you have read was: {shortestBook.NumberOfPages}");
+            Console.WriteLine($"Longest book that you have read was: {longestBook.NumberOfPages}");
         }
 
 
