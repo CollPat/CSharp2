@@ -52,7 +52,7 @@ namespace BooksWrapUp
                 Console.WriteLine("Lowest rated books that you have read are:");
                 foreach (var book in lowestRatedBooks)
                 {
-                    Console.WriteLine(book.Name);
+                    Console.WriteLine($"{book.Name} with rating {book.Rating} stars");
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace BooksWrapUp
                 Console.WriteLine("Highest rated books books that you have read are:");
                 foreach (var book in highestRatedBooks)
                 {
-                    Console.WriteLine(book.Name);
+                    Console.WriteLine($"{book.Name} with rating {book.Rating} stars");
                 }
             }
         }
@@ -86,8 +86,8 @@ namespace BooksWrapUp
             Book fastestReadBook = books.OrderBy(book => book.NumberOfDaysRead).FirstOrDefault();
             Book slowestReadBook = books.OrderByDescending(book => book.NumberOfDaysRead).FirstOrDefault();
 
-            Console.WriteLine($"The book you have read the fastest was: {fastestReadBook.NumberOfDaysRead}");
-            Console.WriteLine($"The book you have read the slowest was: {slowestReadBook.NumberOfDaysRead}");
+            Console.WriteLine($"The book you have read the fastest was: {fastestReadBook.Name} in {fastestReadBook.NumberOfDaysRead} day");
+            Console.WriteLine($"The book you have read the slowest was: {slowestReadBook.Name} in {slowestReadBook.NumberOfDaysRead} days");
         }
 
         public int CountBooksRead()
@@ -108,6 +108,39 @@ namespace BooksWrapUp
             return books.Sum(book => book.NumberOfPages);
         }
 
+        public void WriteAveragePagesReadPerDay()
+        {
+            if (books.Count == 0)
+            {
+                Console.WriteLine("No books in the database.");
+                return;
+            }
+
+            int totalPagesRead = books.Sum(book => book.NumberOfPages);
+            DateTime startOfYear = new DateTime(DateTime.Now.Year, 1, 1);
+            int daysElapsed = (DateTime.Now - startOfYear).Days + 1; 
+
+            double averagePagesPerDay = (double)totalPagesRead / daysElapsed;
+            Console.WriteLine($"Which means that average pages you read per day in {DateTime.Now.Year} are {averagePagesPerDay:F2}");
+        }
+
+        public void WriteAverageBooksReadPerWeek()
+        { 
+            //do we have to use this if in every method? I could not figure out how to write it once, but that would be used everytime we would need 
+            if (books.Count == 0)
+            {
+                Console.WriteLine("No books in the database.");
+                return;
+            }
+
+            int totalBooksRead = books.Count;
+            DateTime startOfYear = new DateTime(DateTime.Now.Year, 1, 1);
+            int daysElapsed = (DateTime.Now - startOfYear).Days + 1; 
+            double weeksElapsed = daysElapsed / 7.0;
+
+            double averageBooksPerWeek = totalBooksRead / weeksElapsed;
+            Console.WriteLine($"And the average number of books you read per week in {DateTime.Now.Year} is {averageBooksPerWeek:F2}");
+        }
         public void ListShortestAndLongestBooks()
         {
             if (books.Count == 0)
@@ -119,8 +152,8 @@ namespace BooksWrapUp
             Book shortestBook = books.OrderBy(book => book.NumberOfPages).FirstOrDefault();
             Book longestBook = books.OrderByDescending(book => book.NumberOfPages).FirstOrDefault();
 
-            Console.WriteLine($"Shortest book that you have read was: {shortestBook.NumberOfPages}");
-            Console.WriteLine($"Longest book that you have read was: {longestBook.NumberOfPages}");
+            Console.WriteLine($"Shortest book that you have read was: {shortestBook.Name} with {shortestBook.NumberOfPages} pages");
+            Console.WriteLine($"Longest book that you have read was: {longestBook.Name} with {longestBook.NumberOfPages} pages");
         }
 
 

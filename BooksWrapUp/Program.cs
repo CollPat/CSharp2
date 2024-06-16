@@ -48,6 +48,14 @@
             //Number of Pages that were read overall
             int totalPagesRead = myBookDatabase.CountTotalPagesRead();
             Console.WriteLine($"Total pages that you have read are: {totalPagesRead}");
+            Console.ReadLine() ;
+            // Writes average pages read per day
+            myBookDatabase.WriteAveragePagesReadPerDay();
+
+            Console.ReadLine ();
+
+            //how many books were read in a week on average 
+            myBookDatabase.WriteAverageBooksReadPerWeek();
 
             Console.ReadLine();
             // List all books
