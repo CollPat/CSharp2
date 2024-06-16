@@ -41,6 +41,8 @@
             myBookDatabase.AddBook(new Book("Welcome to the Hyunam-dong Bookshop", "Hwang Bo-Reum", 307, 5, 3));
             myBookDatabase.AddBook(new Book("Ocean's Echo", "Everina Maxwell", 464, 3, 4));
             myBookDatabase.AddBook(new Book("Thinking Fast and Slow", "Daniel Kahneman", 499, 20, 3));
+            myBookDatabase.AddBook(new Book("Guardian", "Priest", 412, 2, 5));
+
             //Number of books that were read
             myBookDatabase.PrintTotalBooksReadWithDate();
 
