@@ -147,7 +147,7 @@
                             ChangeBookRatingOption(myBookDatabase);
                             break;
 
-                        case "3";
+                        case "3":
                             myBookDatabase.ListHighestRatedBooks();
                             ChangeBookRatingOption(myBookDatabase);
                             break;
