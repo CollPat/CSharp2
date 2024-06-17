@@ -75,6 +75,20 @@ namespace BooksWrapUp
             }
         }
 
+        public void ChangeRating(string bookName, int newRating)
+        {
+            Book book = books.Find(b => b.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.Rating = newRating;
+                Console.WriteLine($"Rating for '{bookName}' has been changed to {newRating}.");
+            }
+            else
+            {
+                Console.WriteLine($"Book '{bookName}' not found.");
+            }
+        }
+
         public void ListFastestAndSlowestReadBooks()
         {
             if (books.Count == 0)
