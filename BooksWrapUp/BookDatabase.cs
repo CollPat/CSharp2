@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace BooksWrapUp
 {
@@ -11,19 +12,23 @@ namespace BooksWrapUp
     public class BookDatabase
     {
         private List<Book> books;
+        private const string DataFilePath = "books.json";
 
         public BookDatabase()
         {
             books = new List<Book>();
+            LoadBooksFromFile();
         }
 
         public void AddBook(Book book)
         {
             books.Add(book);
+            SaveBooksToFile();
         }
 
         public void ListBooks()
         {
+            Console.WriteLine("Here is the list of all books you have read:");
             foreach (var book in books)
             {
                 Console.WriteLine(book);
@@ -57,9 +62,9 @@ namespace BooksWrapUp
             }
         }
 
-        public void ListHighestRatedBooks() 
+        public void ListHighestRatedBooks()
         {
-            var highestRatedBooks = books.FindAll(book => book.Rating == 4  || book.Rating == 5);
+            var highestRatedBooks = books.FindAll(book => book.Rating == 4 || book.Rating == 5);
             if (highestRatedBooks.Count == 0)
             {
                 Console.WriteLine("No books with 4 or 5 star ratings were found.");
@@ -132,15 +137,15 @@ namespace BooksWrapUp
 
             int totalPagesRead = books.Sum(book => book.NumberOfPages);
             DateTime startOfYear = new DateTime(DateTime.Now.Year, 1, 1);
-            int daysElapsed = (DateTime.Now - startOfYear).Days + 1; 
+            int daysElapsed = (DateTime.Now - startOfYear).Days + 1;
 
             double averagePagesPerDay = (double)totalPagesRead / daysElapsed;
             Console.WriteLine($"Which means that average pages you read per day in {DateTime.Now.Year} are {averagePagesPerDay:F2}");
         }
 
         public void WriteAverageBooksReadPerWeek()
-        { 
-            //do we have to use this if in every method? I could not figure out how to write it once, but that would be used everytime we would need 
+        {
+             
             if (books.Count == 0)
             {
                 Console.WriteLine("No books in the database.");
@@ -149,7 +154,7 @@ namespace BooksWrapUp
 
             int totalBooksRead = books.Count;
             DateTime startOfYear = new DateTime(DateTime.Now.Year, 1, 1);
-            int daysElapsed = (DateTime.Now - startOfYear).Days + 1; 
+            int daysElapsed = (DateTime.Now - startOfYear).Days + 1;
             double weeksElapsed = daysElapsed / 7.0;
 
             double averageBooksPerWeek = totalBooksRead / weeksElapsed;
@@ -170,9 +175,21 @@ namespace BooksWrapUp
             Console.WriteLine($"Longest book that you have read was: {longestBook.Name} with {longestBook.NumberOfPages} pages");
         }
 
+        private void SaveBooksToFile()
+        {
+            string json = JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(DataFilePath, json);
+        }
 
+        private void LoadBooksFromFile()
+        {
+            if (File.Exists(DataFilePath))
+            {
+                string json = File.ReadAllText(DataFilePath);
+                books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+            }
 
+        }
     }
-
 }
 
