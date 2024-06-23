@@ -26,6 +26,49 @@ namespace BooksWrapUp
             SaveBooksToFile();
         }
 
+         private void LoadBooksFromFile()
+        {
+            if (File.Exists(DataFilePath))
+            {
+                string jsonData = File.ReadAllText(DataFilePath);
+                books = JsonSerializer.Deserialize<List<Book>>(jsonData) ?? new List<Book>();
+            }
+        }
+
+        private void SaveBooksToFile()
+        {
+            string jsonData = JsonSerializer.Serialize(books);
+            File.WriteAllText(DataFilePath, jsonData);
+        }
+
+        public void RemoveBook(string bookName)
+        {
+            var bookToRemove = books.FirstOrDefault(book => book.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
+            if (bookToRemove != null)
+            {
+                books.Remove(bookToRemove);
+                Console.WriteLine($"Book '{bookName}' has been removed.");
+                SaveBooksToFile();
+            }
+            else
+            {
+                Console.WriteLine($"Book '{bookName}' not found.");
+            }
+        }
+        public void ChangeRating(string bookName, int newRating)
+        {
+            var book = books.FirstOrDefault(b => b.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.Rating = newRating;
+                SaveBooksToFile();
+            }
+            else
+            {
+                Console.WriteLine($"Book '{bookName}' not found.");
+            }
+        }
+
         public void ListBooks()
         {
             Console.WriteLine("Here is the list of all books you have read:");
@@ -82,11 +125,12 @@ namespace BooksWrapUp
 
         public void ChangeRating(string bookName, int newRating)
         {
-            Book book = books.Find(b => b.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
+            var book = books.FirstOrDefault(b => b.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
             if (book != null)
             {
                 book.Rating = newRating;
                 Console.WriteLine($"Rating for '{bookName}' has been changed to {newRating}.");
+                SaveBooksToFile();
             }
             else
             {
@@ -173,22 +217,6 @@ namespace BooksWrapUp
 
             Console.WriteLine($"Shortest book that you have read was: {shortestBook.Name} with {shortestBook.NumberOfPages} pages");
             Console.WriteLine($"Longest book that you have read was: {longestBook.Name} with {longestBook.NumberOfPages} pages");
-        }
-
-        private void SaveBooksToFile()
-        {
-            string json = JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(DataFilePath, json);
-        }
-
-        private void LoadBooksFromFile()
-        {
-            if (File.Exists(DataFilePath))
-            {
-                string json = File.ReadAllText(DataFilePath);
-                books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
-            }
-
         }
     }
 }

@@ -25,8 +25,8 @@
                 }
             }
         }
-        private static void InteractiveBookSearch(BookDatabase myBookDatabase)
 
+        private static void InteractiveBookSearch(BookDatabase myBookDatabase)
         {
             while (true)
             {
@@ -41,6 +41,15 @@
                     foreach (var book in foundBooks)
                     {
                         Console.WriteLine(book);
+                    }
+
+                    Console.WriteLine("Do you want to remove any of these books? (yes/no): ");
+                    string removeResponse = Console.ReadLine();
+                    if (removeResponse.ToLower() == "yes")
+                    {
+                        Console.Write("Enter the name of the book to remove: ");
+                        string bookNameToRemove = Console.ReadLine();
+                        myBookDatabase.RemoveBook(bookNameToRemove);
                     }
                 }
                 else
@@ -73,11 +82,12 @@
                 }
             }
         }
+
         static void Main(string[] args)
         {
             BookDatabase myBookDatabase = new BookDatabase();
 
-            // Add books - is there a way to make it in simplier way than to add book after book? 
+            // Add books 
             myBookDatabase.AddBook(new Book("Get a Life, Chloe Brown", "Talia Hibbert", 248, 3, 4));
             myBookDatabase.AddBook(new Book("Time Shelter", "Georgi Gospodinov", 304, 3, 4));
             myBookDatabase.AddBook(new Book("DallerGut Dream Department Store", "Lee Mi-ye", 243, 3, 5));
