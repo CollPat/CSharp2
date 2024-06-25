@@ -186,7 +186,7 @@ namespace BooksWrapUp
             double weeksElapsed = daysElapsed / 7.0;
 
             double averageBooksPerWeek = totalBooksRead / weeksElapsed;
-            Console.WriteLine($"And the average number of books you read per week in {DateTime.Now.Year} is {averageBooksPerWeek:F2}");
+            Console.WriteLine($"The average number of books you read per week in {DateTime.Now.Year} is {averageBooksPerWeek:F2}");
         }
         public void ListShortestAndLongestBooks()
         {
