@@ -26,7 +26,7 @@ namespace BooksWrapUp
             SaveBooksToFile();
         }
 
-         private void LoadBooksFromFile()
+        private void LoadBooksFromFile()
         {
             if (File.Exists(DataFilePath))
             {
@@ -122,22 +122,6 @@ namespace BooksWrapUp
                 }
             }
         }
-
-        public void ChangeRating(string bookName, int newRating)
-        {
-            var book = books.FirstOrDefault(b => b.Name.Equals(bookName, StringComparison.OrdinalIgnoreCase));
-            if (book != null)
-            {
-                book.Rating = newRating;
-                Console.WriteLine($"Rating for '{bookName}' has been changed to {newRating}.");
-                SaveBooksToFile();
-            }
-            else
-            {
-                Console.WriteLine($"Book '{bookName}' not found.");
-            }
-        }
-
         public void ListFastestAndSlowestReadBooks()
         {
             if (books.Count == 0)
@@ -189,7 +173,7 @@ namespace BooksWrapUp
 
         public void WriteAverageBooksReadPerWeek()
         {
-             
+
             if (books.Count == 0)
             {
                 Console.WriteLine("No books in the database.");
