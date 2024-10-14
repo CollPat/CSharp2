@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BOR7.1", "BOR7.1\BOR7.1.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BOR8", "BOR8\BOR8.csproj", "{C516475C-07E6-4BD6-A024-F6B9F9ECDF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksWrapUp", "BooksWrapUp\BooksWrapUp.csproj", "{4301430F-8F25-4DE9-830F-948929A09D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksWrapUp", "BooksWrapUp\BooksWrapUp.csproj", "{4301430F-8F25-4DE9-830F-948929A09D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOR12", "BOR12\BOR12.csproj", "{B387ABC6-91EC-463E-ADF9-0E89A7C65F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOR12.Test", "BOR12.Test\BOR12.Test.csproj", "{A0945B48-DD43-4EA1-8737-26A03FF0F65B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{4301430F-8F25-4DE9-830F-948929A09D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4301430F-8F25-4DE9-830F-948929A09D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4301430F-8F25-4DE9-830F-948929A09D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B387ABC6-91EC-463E-ADF9-0E89A7C65F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B387ABC6-91EC-463E-ADF9-0E89A7C65F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B387ABC6-91EC-463E-ADF9-0E89A7C65F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B387ABC6-91EC-463E-ADF9-0E89A7C65F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0945B48-DD43-4EA1-8737-26A03FF0F65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0945B48-DD43-4EA1-8737-26A03FF0F65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0945B48-DD43-4EA1-8737-26A03FF0F65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0945B48-DD43-4EA1-8737-26A03FF0F65B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
